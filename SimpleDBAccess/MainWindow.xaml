@@ -1,0 +1,75 @@
+﻿<Window x:Class="SimpleDBAccess.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleDBAccess"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="700"
+        Background="#2E2E2E">
+
+	<Grid>
+		<TabControl x:Name="MainTabControl" Background="#2E2E2E" Foreground="White" BorderBrush="#00D2BE" BorderThickness="1" Margin="0,50,0,0">
+			<TabControl.Resources>
+				<Style TargetType="TabItem">
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="TabItem">
+								<Grid>
+									<Border Name="Border" Background="#444444" BorderBrush="#00D2BE" BorderThickness="1" CornerRadius="10,10,0,0" Margin="2">
+										<ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="10,2"/>
+									</Border>
+								</Grid>
+								<ControlTemplate.Triggers>
+									<Trigger Property="IsSelected" Value="True">
+										<Setter Property="Background" Value="#00D2BE"/>
+										<Setter Property="Foreground" Value="White"/>
+									</Trigger>
+									<Trigger Property="IsSelected" Value="False">
+										<Setter Property="Background" Value="#444444"/>
+										<Setter Property="Foreground" Value="White"/>
+									</Trigger>
+									<Trigger Property="IsEnabled" Value="False">
+										<Setter TargetName="Border" Property="Background" Value="#2E2E2E"/>
+										<Setter TargetName="Border" Property="BorderBrush" Value="#2E2E2E"/>
+										<Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="Gray"/>
+									</Trigger>
+								</ControlTemplate.Triggers>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</TabControl.Resources>
+			<TabItem Header="Fahrzeug suchen">
+				<Grid Background="#2E2E2E">
+					<Label Content="Fahrzeug suchen" FontSize="25" HorizontalAlignment="Left" Margin="31,31,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<Label Content="VIN" HorizontalAlignment="Left" Margin="31,100,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<TextBox x:Name="SearchValueTextBox" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top" Width="236" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2"/>
+					<Button Content="Get Data" HorizontalAlignment="Left" Margin="31,180,0,0" VerticalAlignment="Top" Width="236" Click="Button_get_data" Height="40" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2"/>
+					<TextBox x:Name="AusgabeFeld" HorizontalAlignment="Center" Height="211" Margin="0,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2" Visibility="Collapsed"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Auswahl anzeigen">
+				<Grid Background="#2E2E2E">
+					<Label Content="Auswahl anzeigen" FontSize="25" HorizontalAlignment="Left" Margin="31,31,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<ComboBox x:Name="BrandComboBox" HorizontalAlignment="Left" Margin="31,100,0,0" VerticalAlignment="Top" Width="236" Background="Black" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2">
+						<ComboBox.Resources>
+							<Style TargetType="ComboBoxItem">
+								<Setter Property="Background" Value="Black"/>
+								<Setter Property="Foreground" Value="White"/>
+							</Style>
+						</ComboBox.Resources>
+						<ComboBoxItem Content="Mercedes"/>
+						<ComboBoxItem Content="BMW"/>
+						<ComboBoxItem Content="Porsche"/>
+					</ComboBox>
+					<Label Content="Modell" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<TextBox x:Name="ModelTextBox" HorizontalAlignment="Left" Margin="31,160,0,0" VerticalAlignment="Top" Width="236" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2"/>
+					<CheckBox x:Name="IsEQCheckBox" Content="Vollelektrisch" HorizontalAlignment="Left" Margin="31,210,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<Button Content="Search" HorizontalAlignment="Left" Margin="31,260,0,0" VerticalAlignment="Top" Width="236" Click="Button_search_data" Height="40" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2"/>
+					<TextBox x:Name="ResultFeld" HorizontalAlignment="Center" Height="211" Margin="0,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2" Visibility="Collapsed"/>
+				</Grid>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>
