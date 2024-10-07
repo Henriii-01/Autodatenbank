@@ -5,71 +5,94 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleDBAccess"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="700"
+        Title="Hauptfenster" Height="500" Width="700"
         Background="#2E2E2E">
-
 	<Grid>
-		<TabControl x:Name="MainTabControl" Background="#2E2E2E" Foreground="White" BorderBrush="#00D2BE" BorderThickness="1" Margin="0,50,0,0">
-			<TabControl.Resources>
-				<Style TargetType="TabItem">
-					<Setter Property="Template">
-						<Setter.Value>
-							<ControlTemplate TargetType="TabItem">
-								<Grid>
-									<Border Name="Border" Background="#444444" BorderBrush="#00D2BE" BorderThickness="1" CornerRadius="10,10,0,0" Margin="2">
-										<ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="10,2"/>
-									</Border>
-								</Grid>
-								<ControlTemplate.Triggers>
-									<Trigger Property="IsSelected" Value="True">
-										<Setter Property="Background" Value="#00D2BE"/>
-										<Setter Property="Foreground" Value="White"/>
-									</Trigger>
-									<Trigger Property="IsSelected" Value="False">
-										<Setter Property="Background" Value="#444444"/>
-										<Setter Property="Foreground" Value="White"/>
-									</Trigger>
-									<Trigger Property="IsEnabled" Value="False">
-										<Setter TargetName="Border" Property="Background" Value="#2E2E2E"/>
-										<Setter TargetName="Border" Property="BorderBrush" Value="#2E2E2E"/>
-										<Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="Gray"/>
-									</Trigger>
-								</ControlTemplate.Triggers>
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
-				</Style>
-			</TabControl.Resources>
-			<TabItem Header="Fahrzeug suchen">
+		<TabControl x:Name="MainTabControl" Background="#2E2E2E" Foreground="#00D2BE" BorderBrush="#00D2BE" BorderThickness="2" Margin="0,50,0,0">
+			<!-- Tab 1: Suchen -->
+			<TabItem Header="Datenbank" Background="#2E2E2E" Foreground="#00D2BE" BorderBrush="#00D2BE">
 				<Grid Background="#2E2E2E">
+					<!-- VIN Suche -->
 					<Label Content="Fahrzeug suchen" FontSize="25" HorizontalAlignment="Left" Margin="31,31,0,0" VerticalAlignment="Top" Foreground="White"/>
 					<Label Content="VIN" HorizontalAlignment="Left" Margin="31,100,0,0" VerticalAlignment="Top" Foreground="White"/>
-					<TextBox x:Name="SearchValueTextBox" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top" Width="236" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2"/>
-					<Button Content="Get Data" HorizontalAlignment="Left" Margin="31,180,0,0" VerticalAlignment="Top" Width="236" Click="Button_get_data" Height="40" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2"/>
-					<TextBox x:Name="AusgabeFeld" HorizontalAlignment="Center" Height="211" Margin="0,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2" Visibility="Collapsed"/>
-				</Grid>
-			</TabItem>
-			<TabItem Header="Auswahl anzeigen">
-				<Grid Background="#2E2E2E">
-					<Label Content="Auswahl anzeigen" FontSize="25" HorizontalAlignment="Left" Margin="31,31,0,0" VerticalAlignment="Top" Foreground="White"/>
-					<ComboBox x:Name="BrandComboBox" HorizontalAlignment="Left" Margin="31,100,0,0" VerticalAlignment="Top" Width="236" Background="Black" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2">
-						<ComboBox.Resources>
-							<Style TargetType="ComboBoxItem">
-								<Setter Property="Background" Value="Black"/>
-								<Setter Property="Foreground" Value="White"/>
-							</Style>
-						</ComboBox.Resources>
-						<ComboBoxItem Content="Mercedes"/>
-						<ComboBoxItem Content="BMW"/>
-						<ComboBoxItem Content="Porsche"/>
+					<TextBox x:Name="SearchValueTextBox" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top" Width="236"
+							 Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="4"/>
+					<Button Content="Daten abrufen" HorizontalAlignment="Left" Margin="31,180,0,0" VerticalAlignment="Top" Width="236" Click="Button_get_data"
+							Height="40" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="4"/>
+					<TextBox x:Name="AusgabeFeld" HorizontalAlignment="Center" Height="211" Margin="0,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500"
+							 Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="4" Visibility="Collapsed"/>
+
+					<!-- Auswahl anzeigen -->
+					<Label Content="Auswahl anzeigen" FontSize="25" HorizontalAlignment="Left" Margin="400,31,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<ComboBox x:Name="BrandComboBox" HorizontalAlignment="Left" Margin="400,100,0,0" VerticalAlignment="Top" Width="236"
+							  Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="4">
+						<ComboBoxItem Content="Mercedes" Background="#444444" Foreground="White"/>
+						<ComboBoxItem Content="BMW" Background="#444444" Foreground="White"/>
+						<ComboBoxItem Content="Porsche" Background="#444444" Foreground="White"/>
 					</ComboBox>
-					<Label Content="Modell" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top" Foreground="White"/>
-					<TextBox x:Name="ModelTextBox" HorizontalAlignment="Left" Margin="31,160,0,0" VerticalAlignment="Top" Width="236" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2"/>
-					<CheckBox x:Name="IsEQCheckBox" Content="Vollelektrisch" HorizontalAlignment="Left" Margin="31,210,0,0" VerticalAlignment="Top" Foreground="White"/>
-					<Button Content="Search" HorizontalAlignment="Left" Margin="31,260,0,0" VerticalAlignment="Top" Width="236" Click="Button_search_data" Height="40" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2"/>
-					<TextBox x:Name="ResultFeld" HorizontalAlignment="Center" Height="211" Margin="0,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="2" Visibility="Collapsed"/>
+					<Label Content="Modell" HorizontalAlignment="Left" Margin="400,130,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<TextBox x:Name="ModelTextBox" HorizontalAlignment="Left" Margin="400,160,0,0" VerticalAlignment="Top" Width="236"
+							 Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="4"/>
+
+					<!-- Preis hinzufügen -->
+					<Label Content="Preis" HorizontalAlignment="Left" Margin="400,190,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<TextBox x:Name="PriceTextBox" HorizontalAlignment="Left" Margin="400,220,0,0" VerticalAlignment="Top" Width="236"
+							 Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="4"/>
+
+					<!-- Auswahlmöglichkeiten für Verbrenner, Elektro und Alle Antriebsarten -->
+					<RadioButton x:Name="CombustionRadioButton" Content="Verbrenner" HorizontalAlignment="Left" Margin="400,260,0,0" VerticalAlignment="Top" Foreground="White" GroupName="Antriebsart"/>
+					<RadioButton x:Name="ElectricRadioButton" Content="Elektro" HorizontalAlignment="Left" Margin="400,290,0,0" VerticalAlignment="Top" Foreground="White" GroupName="Antriebsart"/>
+					<RadioButton x:Name="BothRadioButton" Content="Alle Antriebsarten" HorizontalAlignment="Left" Margin="400,320,0,0" VerticalAlignment="Top" Foreground="White" GroupName="Antriebsart" IsChecked="True"/>
+
+					<Button Content="Suchen" HorizontalAlignment="Left" Margin="400,360,0,0" VerticalAlignment="Top" Width="236" Click="Button_search_data"
+							Height="40" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="4"/>
+					<DataGrid x:Name="ResultGrid" HorizontalAlignment="Center" Margin="0,420,0,0" VerticalAlignment="Top" Width="500" Height="211"
+							  Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="4" Visibility="Collapsed" IsReadOnly="True" AutoGenerateColumns="True"/>
 				</Grid>
 			</TabItem>
+
+			<!-- Tab 2: Neues Fahrzeug hinzufügen -->
+			<TabItem x:Name="AddTab" Header="Neues Fahrzeug hinzufügen" Background="#2E2E2E" Foreground="#00D2BE" BorderBrush="#00D2BE">
+				<Grid Background="#2E2E2E">
+					<Label Content="VIN" HorizontalAlignment="Left" Margin="31,31,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<TextBox x:Name="NewVinTextBox" HorizontalAlignment="Left" Margin="31,60,0,0" VerticalAlignment="Top" Width="236"
+							 Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="3"/>
+					<Label Content="Marke" HorizontalAlignment="Left" Margin="31,100,0,0" VerticalAlignment="Top" Foreground="White"/>
+
+					<ComboBox x:Name="NewBrandComboBox" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top" Width="236"
+							  Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="3">
+						<ComboBoxItem Content="Mercedes" Background="#444444" Foreground="White"/>
+						<ComboBoxItem Content="BMW" Background="#444444" Foreground="White"/>
+						<ComboBoxItem Content="Porsche" Background="#444444" Foreground="White"/>
+					</ComboBox>
+
+					<Label Content="Modell" HorizontalAlignment="Left" Margin="31,160,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<TextBox x:Name="NewModelTextBox" HorizontalAlignment="Left" Margin="31,190,0,0" VerticalAlignment="Top" Width="236"
+							 Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="3"/>
+
+					<Label Content="Antriebsart" HorizontalAlignment="Left" Margin="31,230,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<RadioButton x:Name="CombustionRadioButton2" Content="Verbrenner" Margin="31,260,0,0" Foreground="White" GroupName="Antriebsart2"/>
+					<RadioButton x:Name="ElectricRadioButton2" Content="Elektro" Margin="31,290,0,0" Foreground="White" GroupName="Antriebsart2"/>
+					<RadioButton x:Name="BothRadioButton2" Content="Alle Antriebsarten" Margin="31,320,0,0" Foreground="White" GroupName="Antriebsart2" IsChecked="True" Visibility="Collapsed"/>
+
+					<Label Content="Produktionsjahr" HorizontalAlignment="Left" Margin="31,350,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<TextBox x:Name="NewYearTextBox" HorizontalAlignment="Left" Margin="31,380,0,0" VerticalAlignment="Top" Width="236"
+							 Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="3"/>
+
+					<!-- Preis hinzufügen -->
+					<Label Content="Preis" HorizontalAlignment="Left" Margin="31,410,0,0" VerticalAlignment="Top" Foreground="White"/>
+					<TextBox x:Name="NewPriceTextBox" HorizontalAlignment="Left" Margin="31,440,0,0" VerticalAlignment="Top" Width="236"
+							 Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="3"/>
+
+					<Label x:Name="VinErrorLabel" Content="Fehler" Visibility="Collapsed" Foreground="Red" Margin="31,470,0,0"/>
+
+					<Button Content="Erstellen" HorizontalAlignment="Left" Margin="31,500,0,0" VerticalAlignment="Top" Width="236"
+							Height="40" Background="#444444" Foreground="White" BorderBrush="#00D2BE" BorderThickness="3"
+							Click="Button_create_vehicle"/>
+				</Grid>
+			</TabItem>
+
+
 		</TabControl>
 	</Grid>
 </Window>
