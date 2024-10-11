@@ -30,7 +30,7 @@ namespace SimpleDBAccess
         {
             try
             {
-                using (MySqlConnection con = new MySqlConnection(@"SERVER=localhost;DATABASE=hallo;UID=root;PASSWORD=IchBinBroke1!;"))
+                using (MySqlConnection con = new MySqlConnection(@"SERVER=localhost;DATABASE=car_db;UID=root;PASSWORD=******;"))
                 {
                     con.Open();
                     string insertQuery = "INSERT INTO YourTableName (Column1, Column2, Column3) VALUES (@value1, @value2, @value3)";
